@@ -33,16 +33,6 @@ Each model is a binarized version of the standard architecture, carefully modifi
 
 ---
 
-## 🛠️ Installation
-
-```bash
-git clone https://github.com/your_username/BBN.git
-cd BBN
-pip install -r requirements.txt
-```
-
----
-
 ## Repository Structure
 
 ```
@@ -67,21 +57,58 @@ BBN/
 
 ---
 
-## 🧠 How to Use
+## How to Use
 
-**Training Example:**
+**Training On Cifar10:**
 ```bash
-python train.py --model binarized_resnet --dataset cifar10 --epochs 100
+python3 main_binary.py --model resnet_binary --dataset cifar10 --epochs 100
+```
+```bash
+python3 main_binary.py --model alexnet_binary --dataset cifar10 --epochs 100
+```
+```bash
+python3 main_binary.py --model vgg_cifar10_binary --dataset cifar10 --epochs 100
 ```
 
-**Testing Example:**
+**Training On Cifar100:**
 ```bash
-python test.py --model binarized_vgg --dataset cifar10
+python3 main_binary.py --model resnet_binary --dataset cifar100 --epochs 100
 ```
+```bash
+python3 main_binary.py --model alexnet_binary --dataset cifar100 --epochs 100
+```
+```bash
+python3 main_binary.py --model vgg_cifar100_binary --dataset cifar100 --epochs 100
+```
+
 
 All hyperparameters (learning rate, batch size, optimizer, etc.) can be adjusted via command-line arguments.
 
 ---
+
+## Command Line Arguments
+
+| Argument | Type | Default | Description |
+|:---------|:-----|:--------|:------------|
+| `--results_dir` | str | `./results` | Directory to save results. |
+| `--save` | str | `''` | Name of folder to save models/checkpoints. |
+| `--dataset` | str | `imagenet` | Name or path of dataset. |
+| `--model`, `-a` | str | `alexnet` | Model architecture. Choices: alexnet, vgg, resnet. |
+| `--input_size` | int | `None` | Input image size. |
+| `--model_config` | str | `''` | Additional model configuration. |
+| `--type` | str | `torch.cuda.FloatTensor` | Tensor type (e.g., `torch.cuda.HalfTensor`). |
+| `--gpus` | str | `'0'` | GPUs to be used (e.g., `0,1,2`). |
+| `-j`, `--workers` | int | `8` | Number of data loader workers. |
+| `--epochs` | int | `2500` | Number of total epochs to train. |
+| `--start-epoch` | int | `0` | Manual epoch number (for restarts). |
+| `-b`, `--batch-size` | int | `256` | Mini-batch size. |
+| `--optimizer` | str | `SGD` | Optimizer to use (e.g., `SGD`, `Adam`). |
+| `--lr`, `--learning_rate` | float | `0.1` | Initial learning rate. |
+| `--momentum` | float | `0.9` | Momentum for SGD optimizer. |
+| `--weight-decay`, `--wd` | float | `1e-4` | Weight decay (L2 regularization). |
+| `-p`, `--print-freq` | int | `10` | Frequency of printing training status. |
+| `--resume` | str | `''` | Path to checkpoint to resume training from. |
+| `-e`, `--evaluate` | str | `None` | Evaluate model from given checkpoint on validation set. |
 
 ## 🔥 Results
 
@@ -117,3 +144,14 @@ This project is licensed under the [MIT License](LICENSE).
 
 Would you also like me to prepare a small **`requirements.txt`** and **sample train.py** snippet if you want to make the repo instantly runnable? 🚀  
 Would look super clean!
+
+
+
+
+
+
+Perfect — thanks for sharing the actual list of supported arguments.
+
+Here’s the **full README** updated properly, including a **nice table of the command-line arguments** based on what you gave:
+
+---
